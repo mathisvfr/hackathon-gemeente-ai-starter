@@ -1,0 +1,12 @@
+{
+  "message": "Welke GDPR vereisten zijn er voor een gemeente chatbot?",
+  "context": {
+    "role": "civil-servant",
+    "roleName": "Gemeente Ambtenaar",
+    "projectPhase": "Beleidsontwikkeling",
+    "focusAreas": ["compliance"],
+    "specificNeeds": ["Compliance & Regelgeving"],
+    "customContext": "We willen een AI chatbot implementeren voor burgerservice en moeten GDPR compliant zijn"
+  },
+  "timestamp": "2025-06-11T14:45:00.000Z"
+}

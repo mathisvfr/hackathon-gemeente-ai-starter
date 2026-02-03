@@ -1,0 +1,129 @@
+---
+title: Stel een protocol vast voor de situatie dat er (een vermoeden van) discriminatie door een algoritme is geconstateerd en pas dit wanneer nodig toe - Algoritmekader 2.2
+url: https://minbzk.github.io/Algoritmekader/voldoen-aan-wetten-en-regels/maatregelen/0-org-15-discriminatieprotocol/index.html
+scraped_at: 2025-06-12T10:33:06.820560
+---
+
+# Stel een protocol vast voor de situatie dat er (een vermoeden van) discriminatie door een algoritme is geconstateerd en pas dit wanneer nodig toe - Algoritmekader 2.2
+
+Source: https://minbzk.github.io/Algoritmekader/voldoen-aan-wetten-en-regels/maatregelen/0-org-15-discriminatieprotocol/index.html
+
+---
+
+[ ![Home Algoritmekader](../../../assets/logo.svg) ](../../.. "Algoritmekader 2.2") Algoritmekader 2.2
+
+[ GitHub  ](https://github.com/MinBZK/Algoritmekader "Ga naar repository")
+
+  * [ Soorten algoritmes en AI  ](../../../soorten-algoritmes-en-ai/)
+  * [ Onderwerpen  ](../../../onderwerpen/)
+  * [ Levenscyclus  ](../../../levenscyclus/)
+  * [ Rollen  ](../../../rollen/)
+  * [ Voldoen aan wetten en regels  ](../../)
+
+Inhoudsopgave
+
+  * Maatregel
+  * Toelichting
+    * Stap 1: Vermoeden van onrechtmatigheid
+    * Stap 2: Inzicht en overzicht
+    * Stap 3: Beperken schade
+    * Stap 4: Melden en informeren
+    * Stap 5: Registratie en afhandeling
+  * Risico
+  * Bijbehorende vereiste(n)
+  * Bronnen
+  * Voorbeelden
+
+  1. [ Voldoen aan wetten en regels  ](../../)
+  2. [ Maatregelen  ](../)
+
+# Stel een protocol vast voor de situatie dat er (een vermoeden van) discriminatie door een algoritme is geconstateerd en pas dit wanneer nodig toe
+
+[]( "Vereiste ID")org-15[](../../../levenscyclus/ "Levencyclus")[Organisatieverantwoordelijkheden](../../../levenscyclus/organisatieverantwoordelijkheden/)[](../../../levenscyclus/ "Levencyclus")[Implementatie](../../../levenscyclus/implementatie/)[](../../../rollen/ "Rollen")[Projectleider](../../../rollen/projectleider/)[](../../../rollen/ "Rollen")[Beleid en advies](../../../rollen/beleid-en-advies/)[](../../../onderwerpen/ "Onderwerp")[Bias en non discriminatie](../../../onderwerpen/bias-en-non-discriminatie/)
+
+## Maatregel
+
+Stel een protocol vast voor de situatie dat er (een vermoeden van) discriminatie door een algoritme is geconstateerd en pas dit wanneer nodig toe.
+
+## Toelichting
+
+De inzet van algoritmes kan onbedoeld leiden tot discriminerende effecten. Het is van belang om als organisatie een protocol te hebben vastgesteld waarin is uitgewerkt hoe wordt omgegaan met situaties waarin (een vermoeden van) discriminatie door een algoritme is geconstateerd. In een dergelijk protocol kunnen de handelingen worden beschreven die moeten worden uitgevoerd om deze situatie te herstellen. Het vaststellen van een dergelijk protocol geeft ontwikkelaars en gebruikers (vooraf) duidelijkheid wat van hen wordt verwacht en wat zij kunnen doen om discriminatie door algoritmes te voorkomen.
+Een voorbeeld hiervan is het analyseren van de data op [datakwaliteit en bias in de data](../3-dat-01-datakwaliteit/) en [toets regelmatig je algoritmisch systeem op bias](../5-ver-03-biasanalyse/).
+
+Het Ministerie van Binnenlandse Zaken en Koninkrijksrelaties heeft een [discriminatieprotocol](https://minbzk.github.io/discriminatieprotocol) opgesteld wat organisaties handvatten biedt.
+
+Een discriminatieprotocol kan de volgende stappen bevatten:
+
+### Stap 1: Vermoeden van onrechtmatigheid
+
+Een vermoeden van bevooroordeeldheid of discriminatie kan vanuit verschillende partijen gemeld worden. Signalen hiervoor kunnen worden ontvangen vanuit de interne organisatie, bijvoorbeeld door de betrokken ontwikkelaars, gebruikers of beheerders, of door externe partijen, zoals belanghebbenden, toezichthouder of journalisten.
+
+  * Zorg dat signalen tijdig bij de goede medewerkers terecht komen.
+  * Indien er sprake is van zo'n vermoeden, zorg je dat bijvoorbeeld de uitvoerend directeur, de interne toezichthouder en/of de CIO en CDO hierover worden geïnformeerd.
+  * Maak met de verantwoordelijken een afweging of het betreffende systeem in werking kan blijven of dat bijvoorbeeld [het noodplan voor het stopzetten van het algoritme](../4-owk-02-stopzetten-gebruik/) (tijdelijk) in gang moet worden gezet.
+
+### Stap 2: Inzicht en overzicht
+
+Het is van belang om inzicht en overzicht te krijgen over de oorzaak en de gevolgen van eventuele discriminerende effecten van het algoritme. Daarvoor kan worden gedacht aan het uitvoeren van een bias analyse.
+
+  * Bepaal wie er verantwoordelijk is voor het uitvoeren van het onderzoek.
+  * Bepaal of je een onafhankelijk onderzoek wilt doen naar het algoritme.
+  * Breng in kaart wat de omvang van het probleem is. Hoe lang doet het probleem zich al voort, en hoeveel mensen betreft het?
+  * Ga snel met (vertegenwoordigers van) gedupeerden in gesprek over de gevolgen en de mogelijke schade.
+  * Trek een conclusie of er sprake is van discriminatie, of een sterk vermoeden van discriminatie.
+  * Onderzoek en analyseer waarom de genomen maatregelen om discriminatie tegen te gaan, zoals het [uitvoeren van een biasanalyse](../5-ver-03-biasanalyse/) onvoldoende hebben gewerkt. Bekijk hoe de werkwijzen in de organisatie verbeterd kunnen worden zodat dit in de toekomst voorkomen kan worden.
+
+### Stap 3: Beperken schade
+
+Bepaal welke mitigerende maatregelen er genomen moeten worden. Als er in het onderzoek is vastgesteld dat er sprake is van discriminatie, dan moet het betreffende systeem worden stopgezet. Hierbij kan je denken aan:
+
+  * Het in werking stellen van het [het noodplan voor het stopzetten van het algoritme](../4-owk-02-stopzetten-gebruik/), indien dat in stap 1 nog niet gebeurd is.
+  * Aanpassingen in het algoritme, de werkinstructies of de bijbehorende processen.
+  * Indien het algoritme essentieel is in de uitvoer kan er sprake zijn van een een proportionaliteitsvraagstuk. In dat geval moet er worden bezien wat de alternatieven zijn, en of er delen van het systeem kunnen worden uitgeschakeld.
+
+### Stap 4: Melden en informeren
+
+De conclusies van de eerdere stappen moeten, indien nodig, worden gemeld bij de betreffende instanties. De eventuele gedupeerde burgers dienen te worden geïnformeerd over de gevolgen.
+
+  * Als er sprake is van een hoog-risico AI-systeem moeten ernstige incidenten worden gemeld bij de markttoezichtautoriteiten. Zie [artikel 73 van de AI-verordening](https://eur-lex.europa.eu/legal-content/NL/TXT/HTML/?uri=OJ:L_202401689#d1e7117-1-1) en [artikel 3 (49.c) van de AI-verordening](https://eur-lex.europa.eu/legal-content/NL/TXT/HTML/?uri=OJ:L_202401689#d1e2093-1-1).
+  * Voor alle algoritmes geldt: Informeer de interne toezichthouder, de externe toezichthouder en de politiek, afhankelijk van hoeveel mensen geraakt en gedupeerd zijn en de impact.
+  * Informeer de betrokken burgers over de situatie. Maak indien nodig excuses en geef de mensen die (mogelijk) geraakt zijn uitleg zodat zij:
+
+    * begrijpen wat er is gebeurd
+    * weten wat de waarschijnlijke gevolgen zijn
+    * welke mitigerende maatregelen zijn genomen
+    * waar mensen terecht kunnen met vragen
+    * op de hoogte zijn van het proces rondom de afhandeling van de schade.
+
+### Stap 5: Registratie en afhandeling
+
+  * Registreer het algoritme in het [algoritmeregister](https://algoritmes.overheid.nl/nl), indien dat nog niet gebeurd is.
+  * Zorg voor goede klachtenafhandeling en herstelprocedures.
+
+## Risico
+
+Als er geen protocol wordt vastgesteld voor het detecteren van discriminatie door een algoritme is er een risico op discriminatie, waarbij het niet duidelijk is voor werknemers wat de stappen zijn om dit te herkennen en tegen te gaan.
+
+## Bijbehorende vereiste(n)
+
+Bekijk alle vereisten Vereiste
+---
+[grw-02 - Algoritmes discrimineren niet](https://minbzk.github.io/Algoritmekader/voldoen-aan-wetten-en-regels/vereisten/grw-02-non-discriminatie/)
+
+## Bronnen
+
+  * [Discriminatieprotcol van het Ministerie van Binnenlandse Zaken en Koninkrijksrelaties](https://minbzk.github.io/discriminatieprotocol/)
+
+## Voorbeelden
+
+Heb je een voorbeeld of best practice, laat het ons weten via [algoritmes@minbzk.nl](mailto:algoritmes@minbzk.nl)
+
+11 februari 2025 13 november 2024
+
+Terug naar boven
+  *norm: een norm is een vrijwillige afspraak tussen partijen over een product, dienst of proces. Normen zijn geen wetten, maar ’best practices’. Iedereen kan - op vrijwillige basis - hier zijn voordeel mee doen. In zakelijke overeenkomsten hebben normen een belangrijke functie. Ze bieden marktpartijen duidelijkheid over en vertrouwen in producten, diensten of organisaties en dagen de maatschappij uit te innoveren. NEN-normen worden ontwikkeld door inhoudsexperts en specialisten op het gebied van normontwikkeling.
+  *aanbieder: Een natuurlijke of rechtspersoon, overheidsinstantie, agentschap of ander orgaan die/dat een AI-systeem of een AI-model voor algemene doeleinden ontwikkelt of laat ontwikkelen en dat systeem of model in de handel brengt of het AI-systeem in gebruik stelt onder de eigen naam of merk, al dan niet tegen betaling.
+  *AI-geletterdheid: vaardigheden, kennis en begrip die aanbieders, gebruiksverantwoordelijken en betrokken personen, rekening houdend met hun respectieve rechten en plichten in het kader van de de AI-verordening, in staat stellen met kennis van zaken AI-systemen in te zetten en zich bewuster te worden van de kansen en risico’s van AI en de mogelijke schade die zij kan veroorzaken
+  *geharmoniseerde norm: Een Europese norm die op verzoek van de Commissie is vastgesteld met het oog op de toepassing van harmonisatiewetgeving van de Unie
+  *conformiteitsbeoordeling: Het proces waarbij de naleving wordt aangetoond van de voorschriften van hoofdstuk III, afdeling 2 van de AI-Verordening in verband met een AI-systeem met een hoog risico
+  *gebruiksverantwoordelijke: Een natuurlijke of rechtspersoon, overheidsinstantie, agentschap of ander orgaan die/dat een AI-systeem onder eigen verantwoordelijkheid gebruikt, tenzij het AI-systeem wordt gebruikt in het kader van een persoonlijke niet- beroepsactiviteit.

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wegwijzer Digitale Gemeenschapsgoederen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Harmony -->
+    <!-- Application Structure Plan: De applicatie is gestructureerd als een taakgerichte toolkit, genaamd "Wegwijzer", in plaats van een lineair rapport. De hoofdnavigatie is opgesplitst in vijf kerntaken/vragen: 'Waarom?' (de strategische voordelen), 'Hoe?' (het stapsgewijze implementatieproces), 'Regels' (een interactief naslagwerk voor wet- en regelgeving), 'Voorbeelden' (een galerij van casestudies), en 'Toekomst' (de visie op lange termijn). Deze non-lineaire structuur is gekozen omdat de doelgroep (ambtenaren) vaak op zoek is naar specifieke, direct toepasbare informatie in plaats van een heel document door te lezen. De gebruiker kan direct naar het voor hem/haar relevante onderdeel springen, wat de bruikbaarheid en efficiëntie verhoogt. De 'Hoe?'-sectie is het hart van de app, met een interactief 3-fasenplan dat de gebruiker door het hele proces leidt. -->
+    <!-- Visualization & Content Choices: Alle informatie is omgezet naar interactieve, webvriendelijke componenten. Fasenplan (Hoe?): Een klikbaar HTML/CSS-diagram in plaats van een platte tekstbeschrijving, wat de gebruiker activeert en door het proces leidt. Wet- en Regelgeving (Regels): Een interactief accordeon vervangt de dichte lappen tekst, waardoor complexe juridische informatie behapbaar wordt. Een Chart.js Bar Chart visualiseert de reikwijdte van belangrijke kaders (zoals de BIO vs. GIBIT), wat helpt bij het snel overzien van de context. Casestudies (Voorbeelden): Een dynamische kaartengalerij maakt de abstracte voorbeelden tastbaar en visueel aantrekkelijk. Tekst is overal ingekort en opgemaakt met duidelijke koppen en lijsten voor betere leesbaarheid op het web. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
+        .nav-button.active {
+            background-color: #0d9488; /* teal-600 */
+            color: white;
+        }
+        .phase-step.active {
+            background-color: #ccfbf1; /* teal-100 */
+            border-color: #0d9488; /* teal-600 */
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 450px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <header class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-teal-700 mb-2">Wegwijzer Digitale Gemeenschapsgoederen</h1>
+            <p class="text-lg text-slate-600">Uw interactieve gids voor de rol van de "Digitale Bouwopzichter"</p>
+        </header>
+
+        <nav class="sticky top-0 z-10 bg-stone-50/80 backdrop-blur-sm py-4 mb-8 border-b border-slate-200">
+            <div class="flex flex-wrap justify-center gap-2">
+                <button onclick="showSection('waarom')" class="nav-button active text-sm md:text-base font-medium px-4 py-2 rounded-full transition-all duration-200 bg-white hover:bg-teal-500 hover:text-white border border-slate-200 shadow-sm">Waarom?</button>
+                <button onclick="showSection('hoe')" class="nav-button text-sm md:text-base font-medium px-4 py-2 rounded-full transition-all duration-200 bg-white hover:bg-teal-500 hover:text-white border border-slate-200 shadow-sm">Hoe?</button>
+                <button onclick="showSection('regels')" class="nav-button text-sm md:text-base font-medium px-4 py-2 rounded-full transition-all duration-200 bg-white hover:bg-teal-500 hover:text-white border border-slate-200 shadow-sm">Regels</button>
+                <button onclick="showSection('voorbeelden')" class="nav-button text-sm md:text-base font-medium px-4 py-2 rounded-full transition-all duration-200 bg-white hover:bg-teal-500 hover:text-white border border-slate-200 shadow-sm">Voorbeelden</button>
+                <button onclick="showSection('toekomst')" class="nav-button text-sm md:text-base font-medium px-4 py-2 rounded-full transition-all duration-200 bg-white hover:bg-teal-500 hover:text-white border border-slate-200 shadow-sm">Toekomst</button>
+            </div>
+        </nav>
+
+        <main>
+            <section id="waarom" class="section active">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-teal-700 mb-2">Waarom kiezen voor Digitale Gemeenschapsgoederen?</h2>
+                    <p class="max-w-3xl mx-auto text-slate-600">Digitale gemeenschapsgoederen (Digital Commons) zijn meer dan alleen technologie; het is een strategische keuze voor een open, eerlijke en soevereine digitale overheid. Dit onderdeel licht de belangrijkste voordelen toe en introduceert de cruciale rol van de digitale bouwopzichter, die u helpt deze voordelen te realiseren.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-100">
+                        <h3 class="font-bold text-xl mb-2 text-teal-600">Kostenreductie & Innovatie</h3>
+                        <p class="text-slate-600">Door ontwikkeling en beheer te delen, bespaart u significant op kosten. Gezamenlijke innovatie versnelt de ontwikkeling van hoogwaardige digitale diensten, waardoor kleine organisaties kunnen profiteren van schaalvoordelen.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-100">
+                        <h3 class="font-bold text-xl mb-2 text-teal-600">Borging Publieke Waarden</h3>
+                        <p class="text-slate-600">Ontwerp de digitale wereld in lijn met Nederlandse en Europese waarden zoals privacy, transparantie en democratische controle. U behoudt de regie en zorgt dat technologie de burger dient.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-100">
+                        <h3 class="font-bold text-xl mb-2 text-teal-600">Digitale Soevereiniteit</h3>
+                        <p class="text-slate-600">Verminder de afhankelijkheid van grote, commerciële leveranciers en voorkom 'vendor lock-in'. Met open source oplossingen behoudt u de controle over uw data en digitale infrastructuur.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-100 md:col-span-2 lg:col-span-3">
+                         <h3 class="font-bold text-xl mb-2 text-rose-600">De Rol van de Digitale Bouwopzichter</h3>
+                        <p class="text-slate-600">Voor kleine organisaties is de digitale wereld complex. De digitale bouwopzichter is uw expert-gids. Deze rol combineert technische, juridische en strategische kennis om u te begeleiden van idee tot succesvolle implementatie. De bouwopzichter helpt bij het schrijven van de opdracht, het controleren van de kwaliteit en het bewaken van de publieke waarden, zodat uw project slaagt en duurzame waarde oplevert.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="hoe" class="section">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-teal-700 mb-2">Hoe implementeer ik een Digitaal Gemeenschapsgoed?</h2>
+                    <p class="max-w-3xl mx-auto text-slate-600">Een succesvolle implementatie volgt een gestructureerd pad. De digitale bouwopzichter begeleidt u door drie cruciale fasen. Klik op een fase om de belangrijkste activiteiten, checklists en aandachtspunten te bekijken. Dit stappenplan is uw concrete handleiding voor het project.</p>
+                </div>
+
+                <div id="phase-container" class="mb-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                        <div onclick="showPhase(1)" id="phase-btn-1" class="phase-step active p-4 border-2 border-slate-300 rounded-lg cursor-pointer transition-all duration-200 hover:bg-teal-50">
+                            <div class="text-2xl mb-1">1</div>
+                            <h3 class="font-bold text-lg">Fundament Leggen</h3>
+                            <p class="text-sm text-slate-500">Opdracht uitschrijven</p>
+                        </div>
+                        <div onclick="showPhase(2)" id="phase-btn-2" class="phase-step p-4 border-2 border-slate-300 rounded-lg cursor-pointer transition-all duration-200 hover:bg-teal-50">
+                            <div class="text-2xl mb-1">2</div>
+                            <h3 class="font-bold text-lg">Selectie & Contract</h3>
+                            <p class="text-sm text-slate-500">Aanbesteden en vastleggen</p>
+                        </div>
+                        <div onclick="showPhase(3)" id="phase-btn-3" class="phase-step p-4 border-2 border-slate-300 rounded-lg cursor-pointer transition-all duration-200 hover:bg-teal-50">
+                            <div class="text-2xl mb-1">3</div>
+                            <h3 class="font-bold text-lg">Kwaliteitsborging</h3>
+                            <p class="text-sm text-slate-500">Deliverables controleren</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="phase-content-container" class="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+                    <div id="phase-content-1" class="phase-content-item">
+                        <h3 class="text-2xl font-bold mb-4 text-teal-600">Fase 1: Een Solide Fundament – De Opdracht Goed Uitschrijven</h3>
+                        <p class="mb-4 text-slate-600">Een project is zo sterk als zijn fundament. In deze fase vertaalt u uw ambities naar concrete en toetsbare eisen in een Programma van Eisen (PvE). De digitale bouwopzichter helpt u om niets over het hoofd te zien.</p>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-bold text-lg">Kernactiviteit: Programma van Eisen (PvE) opstellen</h4>
+                                <p class="text-slate-500">Beschrijf alle functionele en niet-functionele wensen en eisen. Denk aan:</p>
+                                <ul class="list-disc list-inside mt-2 text-slate-600 space-y-1">
+                                    <li><b>Functioneel:</b> Wat moet de oplossing kunnen? (bv. meldingen afhandelen)</li>
+                                    <li><b>Technisch:</b> Eisen aan open source componenten, schaalbaarheid, performance.</li>
+                                    <li><b>Juridisch:</b> Welke open source licentie (EUPL, MPL)? Hoe is het beheer geregeld?</li>
+                                    <li><b>Data:</b> Eisen aan data-eigenaarschap, standaarden en interoperabiliteit (Common Ground).</li>
+                                    <li><b>Veiligheid & Privacy:</b> Voldoen aan de BIO, privacy-by-design (AVG).</li>
+                                    <li><b>Openheid:</b> Gebruik van open standaarden ('Pas toe of leg uit') en API's.</li>
+                                    <li><b>Exitstrategie:</b> Hoe voorkomt u vendor lock-in en zorgt u voor overdraagbaarheid?</li>
+                                </ul>
+                            </div>
+                             <div>
+                                <h4 class="font-bold text-lg">Speciale aandacht voor Common Ground</h4>
+                                <p class="text-slate-500">Veranker de Common Ground-principes in uw PvE. Eis een API-first ontwerp, loskoppeling van data en applicaties, en vraag leveranciers naar ervaring met agile samenwerking in een community.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="phase-content-2" class="phase-content-item hidden">
+                        <h3 class="text-2xl font-bold mb-4 text-teal-600">Fase 2: Selectie, Aanbesteding en Contractering</h3>
+                        <p class="mb-4 text-slate-600">Met een sterk PvE kunt u de markt op. Deze fase draait om het selecteren van de juiste oplossing en/of leverancier en het vastleggen van de afspraken in een waterdicht contract. Dit is een juridisch en procedureel complex proces waar de bouwopzichter essentieel is.</p>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-bold text-lg">Kernactiviteit: Navigeren door de Aanbestedingswet</h4>
+                                <p class="text-slate-500">Als overheid bent u gebonden aan de Aanbestedingswet. De bouwopzichter adviseert over de juiste procedure en helpt om aspecten als "openheid" en "community support" mee te wegen in de selectie. Maak gebruik van de expertise van PIANOo.</p>
+                            </div>
+                             <div>
+                                <h4 class="font-bold text-lg">Gebruik van Standaardvoorwaarden: ARBIT & GIBIT</h4>
+                                <p class="text-slate-500">Maak het uzelf makkelijker en professioneler door standaardvoorwaarden te gebruiken. Het Rijk gebruikt de ARBIT, gemeenten de GIBIT. De GIBIT is een complete toolbox met voorwaarden, kwaliteitsnormen en sjablonen, speciaal voor gemeentelijke IT-inkoop.</p>
+                            </div>
+                             <div>
+                                <h4 class="font-bold text-lg">Verplichting: 'Pas toe of leg uit'-lijst</h4>
+                                <p class="text-slate-500">U bent verplicht de open standaarden van het Forum Standaardisatie toe te passen (o.a. OpenAPI, PDF, Digikoppeling). Dit is cruciaal voor interoperabiliteit en leveranciersonafhankelijkheid. De bouwopzichter zorgt dat deze als harde eis in de aanbesteding worden opgenomen.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="phase-content-3" class="phase-content-item hidden">
+                        <h3 class="text-2xl font-bold mb-4 text-teal-600">Fase 3: Kwaliteitsborging – Het Controleren van Deliverables</h3>
+                        <p class="mb-4 text-slate-600">De handtekeningen zijn gezet, de bouw is gestart. Nu is het zaak om de vinger aan de pols te houden. In deze fase controleert de digitale bouwopzichter of de geleverde producten en diensten (deliverables) voldoen aan de afspraken uit het PvE en het contract.</p>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-bold text-lg">Kernactiviteit: Systematisch Toetsen</h4>
+                                <p class="text-slate-500">Controleer elke deliverable systematisch aan de hand van het PvE. Gebruik de principes en risicogebieden uit het toetskader van het Adviescollege ICT-toetsing (AcICT) als leidraad, ook voor kleinere projecten. Zorg voor duidelijke mijlpalen en rapportages.</p>
+                            </div>
+                             <div>
+                                <h4 class="font-bold text-lg">Focus op Informatiebeveiliging: de BIO</h4>
+                                <p class="text-slate-500">De Baseline Informatiebeveiliging Overheid (BIO) is een bindend normenkader voor de gehele overheid. De bouwopzichter ziet erop toe dat de oplossing "BIO-proof" wordt ontworpen en opgeleverd. Dit is geen suggestie, maar een verplichting. Een gap-analyse kan helpen om de mate van compliance te toetsen.</p>
+                            </div>
+                             <div>
+                                <h4 class="font-bold text-lg">Proactief Risicobeheer</h4>
+                                <p class="text-slate-500">Gedurende het hele traject is de bouwopzichter alert op risico's zoals vendor lock-in, budgetoverschrijding en beveiligingsincidenten. Risico's worden geïdentificeerd, geanalyseerd en gemitigeerd om het project op koers te houden.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <section id="regels" class="section">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-teal-700 mb-2">Regels & Kaders: Uw Juridisch Kompas</h2>
+                    <p class="max-w-3xl mx-auto text-slate-600">De digitale wereld wordt gereguleerd door een complex web van wetten, normen en standaarden. Dit kan overweldigend zijn. Deze sectie functioneert als een interactief naslagwerk, samengesteld door uw digitale bouwopzichter, om u snel inzicht te geven in de belangrijkste kaders en hun relevantie voor uw project.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <div class="accordion-item bg-white rounded-lg border border-slate-200 shadow-sm">
+                            <button class="accordion-header w-full text-left p-4 font-bold text-lg flex justify-between items-center transition-all hover:bg-slate-50">
+                                <span>Wet open overheid (Woo)</span>
+                                <span class="arrow text-teal-500 text-2xl transform transition-transform duration-300">&plus;</span>
+                            </button>
+                            <div class="accordion-content px-4 pb-4">
+                                <p class="text-slate-600"><b>Relevantie:</b> Verplicht de overheid om informatie actief en op verzoek openbaar te maken. Uw systeem moet dit proces ondersteunen (vinden, anonimiseren, publiceren, archiveren).<br><b>Actie:</b> Zorg dat uw oplossing "Woo-proof" is.</p>
+                            </div>
+                        </div>
+                        <div class="accordion-item bg-white rounded-lg border border-slate-200 shadow-sm">
+                            <button class="accordion-header w-full text-left p-4 font-bold text-lg flex justify-between items-center transition-all hover:bg-slate-50">
+                                <span>Wet digitale overheid (Wdo)</span>
+                                <span class="arrow text-teal-500 text-2xl transform transition-transform duration-300">&plus;</span>
+                            </button>
+                            <div class="accordion-content px-4 pb-4">
+                                <p class="text-slate-600"><b>Relevantie:</b> Stelt eisen aan digitale dienstverlening, met name veilige toegang (inloggen) en informatiebeveiliging. <br><b>Actie:</b> Bepaal het betrouwbaarheidsniveau van uw dienst en accepteer de verplichte inlogmiddelen.</p>
+                            </div>
+                        </div>
+                        <div class="accordion-item bg-white rounded-lg border border-slate-200 shadow-sm">
+                            <button class="accordion-header w-full text-left p-4 font-bold text-lg flex justify-between items-center transition-all hover:bg-slate-50">
+                                <span>Algemene Verordening Gegevensbescherming (AVG)</span>
+                                <span class="arrow text-teal-500 text-2xl transform transition-transform duration-300">&plus;</span>
+                            </button>
+                            <div class="accordion-content px-4 pb-4">
+                                <p class="text-slate-600"><b>Relevantie:</b> Strikte Europese privacywet. Cruciaal bij elke verwerking van persoonsgegevens. <br><b>Actie:</b> Pas "privacy by design" en "privacy by default" toe. Voer een DPIA uit bij hoge risico's.</p>
+                            </div>
+                        </div>
+                         <div class="accordion-item bg-white rounded-lg border border-slate-200 shadow-sm">
+                            <button class="accordion-header w-full text-left p-4 font-bold text-lg flex justify-between items-center transition-all hover:bg-slate-50">
+                                <span>Baseline Informatiebeveiliging Overheid (BIO)</span>
+                                <span class="arrow text-teal-500 text-2xl transform transition-transform duration-300">&plus;</span>
+                            </button>
+                            <div class="accordion-content px-4 pb-4">
+                                <p class="text-slate-600"><b>Relevantie:</b> Het bindende normenkader voor informatiebeveiliging voor de hele Nederlandse overheid. <br><b>Actie:</b> Uw systeem MOET voldoen aan de BIO. Dit is een harde eis.</p>
+                            </div>
+                        </div>
+                         <div class="accordion-item bg-white rounded-lg border border-slate-200 shadow-sm">
+                            <button class="accordion-header w-full text-left p-4 font-bold text-lg flex justify-between items-center transition-all hover:bg-slate-50">
+                                <span>'Pas toe of leg uit'-lijst</span>
+                                <span class="arrow text-teal-500 text-2xl transform transition-transform duration-300">&plus;</span>
+                            </button>
+                            <div class="accordion-content px-4 pb-4">
+                                <p class="text-slate-600"><b>Relevantie:</b> Lijst met verplichte open standaarden (beheerd door Forum Standaardisatie) die interoperabiliteit en leveranciersonafhankelijkheid waarborgen. <br><b>Actie:</b> Neem de relevante standaarden (bv. OpenAPI, ODF) verplicht op in uw PvE.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+                         <h3 class="font-bold text-xl mb-4 text-teal-600">Visueel Overzicht: Reikwijdte van Kaders</h3>
+                         <p class="text-slate-600 mb-4">Niet elk kader is voor iedereen even relevant. Deze grafiek toont de primaire doelgroep van de belangrijkste normen en voorwaarden, wat u helpt te bepalen welke voor uw organisatie het meest van toepassing zijn.</p>
+                         <div class="chart-container">
+                            <canvas id="rulesChart"></canvas>
+                         </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <section id="voorbeelden" class="section">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-teal-700 mb-2">Leren van de Praktijk: Inspirerende Voorbeelden</h2>
+                    <p class="max-w-3xl mx-auto text-slate-600">U staat er niet alleen voor. Diverse overheden hebben de stap naar digitale gemeenschapsgoederen al gezet. Deze sectie toont een galerij van concrete casestudies. Leer van hun ervaringen, ontdek bewezen oplossingen en zie wat er mogelijk is wanneer overheden samenwerken.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-lg shadow-sm border border-slate-100 overflow-hidden flex flex-col">
+                        <div class="p-6 flex-grow">
+                            <h3 class="font-bold text-xl mb-2 text-teal-600">Signalen</h3>
+                            <p class="text-slate-600 mb-4">Open source software voor het afhandelen van meldingen openbare ruimte (bv. losse stoeptegel). Ontwikkeld voor en door gemeenten.</p>
+                            <p class="text-sm text-slate-500"><b>Kernpunten:</b> Common Ground-proof, voldoet aan BIO, aanpasbaar aan lokale processen, sterke community.</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 border-t border-slate-200">
+                            <span class="inline-block bg-teal-100 text-teal-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">Gemeenten</span>
+                            <span class="inline-block bg-amber-100 text-amber-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">Open Source</span>
+                        </div>
+                    </div>
+                     <div class="bg-white rounded-lg shadow-sm border border-slate-100 overflow-hidden flex flex-col">
+                        <div class="p-6 flex-grow">
+                            <h3 class="font-bold text-xl mb-2 text-teal-600">vrijBRP</h3>
+                            <p class="text-slate-600 mb-4">Een modern, open source systeem voor de Basisregistratie Personen (BRP), gebaseerd op de Common Ground-architectuur.</p>
+                            <p class="text-sm text-slate-500"><b>Kernpunten:</b> Potentiële kostenbesparing, flexibiliteit, community-gedreven, voorkomt vendor lock-in bij een cruciale applicatie.</p>
+                        </div>
+                         <div class="bg-slate-50 p-4 border-t border-slate-200">
+                            <span class="inline-block bg-teal-100 text-teal-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">Gemeenten</span>
+                            <span class="inline-block bg-amber-100 text-amber-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">Open Source</span>
+                        </div>
+                    </div>
+                     <div class="bg-white rounded-lg shadow-sm border border-slate-100 overflow-hidden flex flex-col">
+                        <div class="p-6 flex-grow">
+                            <h3 class="font-bold text-xl mb-2 text-teal-600">Open Source Programma Amsterdam</h3>
+                            <p class="text-slate-600 mb-4">De gemeente Amsterdam publiceert actief al haar software als open source op GitHub om samenwerking te bevorderen en transparantie te verhogen.</p>
+                            <p class="text-sm text-slate-500"><b>Kernpunten:</b> Duidelijke visie, investeren in documentatie en community, 'open, tenzij' beleid.</p>
+                        </div>
+                         <div class="bg-slate-50 p-4 border-t border-slate-200">
+                            <span class="inline-block bg-teal-100 text-teal-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">Gemeenten</span>
+                             <span class="inline-block bg-sky-100 text-sky-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">Beleid</span>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <section id="toekomst" class="section">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-teal-700 mb-2">De Stip op de Horizon</h2>
+                    <p class="max-w-3xl mx-auto text-slate-600">De keuze voor digitale gemeenschapsgoederen is geen eindstation, maar een fundamentele stap richting de digitale overheid van de toekomst. Dit laatste onderdeel, geadviseerd door uw digitale bouwopzichter, schetst de vergezichten en benadrukt hoe de keuzes van vandaag de weg vrijmaken voor de kansen van morgen.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-100">
+                        <h3 class="font-bold text-xl mb-2 text-teal-600">Naar een Waardengedreven Digitale Overheid</h3>
+                        <p class="text-slate-600">De toekomst is een digitale overheid die mensgericht is en gebaseerd op publieke waarden als autonomie, rechtvaardigheid en inclusiviteit. Digitale gemeenschapsgoederen zijn het perfecte vehikel om deze waarden te verankeren in uw digitale infrastructuur. U bouwt aan een fundament dat niet alleen efficiënt, maar ook eerlijk en transparant is.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-100">
+                        <h3 class="font-bold text-xl mb-2 text-teal-600">De Potentie van de 'Agentic' Digitale Ambtenaar</h3>
+                        <p class="text-slate-600">De "stip op de horizon" is een toekomst waarin slimme, autonome AI-systemen ('agents') routinetaken overnemen. Denk aan een 'digitale collega' die vergunningen automatisch verwerkt of burgers proactief informeert. Dit lijkt ver weg, maar door nu te kiezen voor Common Ground (gestructureerde data, open API's), bouwt u aan het fundament dat nodig is om deze AI-toepassingen in de toekomst op een verantwoorde en ethische manier te kunnen inzetten.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-100">
+                        <h3 class="font-bold text-xl mb-2 text-teal-600">Continue Versterking van Digitale Soevereiniteit</h3>
+                        <p class="text-slate-600">Elk digitaal gemeenschapsgoed dat u implementeert, is een bouwsteen voor uw digitale soevereiniteit. U vergroot de strategische autonomie van uw organisatie en draagt bij aan een sterkere, onafhankelijkere digitale publieke sector in Nederland en Europa. De keuzes die u vandaag maakt, hebben een strategische impact die verder reikt dan uw eigen organisatie.</p>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+
+    </div>
+
+    <script>
+        const sections = document.querySelectorAll('.section');
+        const navButtons = document.querySelectorAll('.nav-button');
+        const phaseSteps = document.querySelectorAll('.phase-step');
+        const phaseContents = document.querySelectorAll('.phase-content-item');
+        const accordionItems = document.querySelectorAll('.accordion-item');
+        let chartInstance = null;
+
+        function showSection(id) {
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(id).classList.add('active');
+
+            navButtons.forEach(button => {
+                button.classList.remove('active');
+                if (button.getAttribute('onclick').includes(id)) {
+                    button.classList.add('active');
+                }
+            });
+
+            if (id === 'regels' && !chartInstance) {
+                renderRulesChart();
+            }
+        }
+
+        function showPhase(phaseNumber) {
+            phaseSteps.forEach(step => step.classList.remove('active'));
+            document.getElementById(`phase-btn-${phaseNumber}`).classList.add('active');
+
+            phaseContents.forEach(content => content.classList.add('hidden'));
+            document.getElementById(`phase-content-${phaseNumber}`).classList.remove('hidden');
+        }
+
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            const content = item.querySelector('.accordion-content');
+            const arrow = item.querySelector('.arrow');
+
+            header.addEventListener('click', () => {
+                const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+                // Close all others
+                accordionItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.querySelector('.accordion-content').style.maxHeight = '0px';
+                        otherItem.querySelector('.arrow').classList.remove('rotate-45');
+                        otherItem.querySelector('.arrow').innerHTML = '&plus;';
+                    }
+                });
+
+                // Toggle current
+                if (isOpen) {
+                    content.style.maxHeight = '0px';
+                    arrow.classList.remove('rotate-45');
+                    arrow.innerHTML = '&plus;';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    arrow.classList.add('rotate-45');
+                    arrow.innerHTML = '&plus;';
+                }
+            });
+        });
+
+        function renderRulesChart() {
+            const ctx = document.getElementById('rulesChart').getContext('2d');
+            const chartData = {
+                labels: ['BIO', 'GIBIT', 'ARBIT', 'Woo', 'Wdo', 'AVG', "'Pas toe of leg uit'"],
+                datasets: [{
+                    label: 'Reikwijdte',
+                    data: [100, 40, 20, 100, 100, 100, 100],
+                    backgroundColor: [
+                        'rgba(15, 118, 110, 0.6)', // Teal
+                        'rgba(245, 158, 11, 0.6)', // Amber
+                        'rgba(59, 130, 246, 0.6)', // Blue
+                        'rgba(14, 165, 233, 0.6)', // Sky
+                        'rgba(14, 165, 233, 0.6)', // Sky
+                        'rgba(236, 72, 153, 0.6)', // Pink
+                        'rgba(139, 92, 246, 0.6)', // Violet
+                    ],
+                    borderColor: [
+                        'rgba(15, 118, 110, 1)',
+                        'rgba(245, 158, 11, 1)',
+                        'rgba(59, 130, 246, 1)',
+                        'rgba(14, 165, 233, 1)',
+                        'rgba(14, 165, 233, 1)',
+                        'rgba(236, 72, 153, 1)',
+                        'rgba(139, 92, 246, 1)',
+                    ],
+                    borderWidth: 1,
+                    barPercentage: 0.7,
+                }]
+            };
+
+            const tooltips = {
+                'BIO': 'Alle overheidslagen (Rijk, Gemeenten, Provincies, Waterschappen)',
+                'GIBIT': 'Primair voor Gemeenten',
+                'ARBIT': 'Primair voor het Rijk',
+                'Woo': 'Alle overheidsorganen',
+                'Wdo': 'Alle publieke organisaties',
+                'AVG': 'Alle organisaties die persoonsgegevens verwerken',
+                "'Pas toe of leg uit'": 'Alle overheidsorganisaties',
+            }
+
+            chartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: chartData,
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            display: false,
+                            max: 100,
+                        },
+                        y: {
+                           grid: {
+                                display: false
+                           },
+                           ticks: {
+                                font: {
+                                    size: 14,
+                                    weight: '500',
+                                }
+                           }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    return tooltips[label] || '';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('waarom');
+            showPhase(1);
+        });
+
+    </script>
+</body>
+</html>
