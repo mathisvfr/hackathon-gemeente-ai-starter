@@ -4,7 +4,7 @@ Welkom bij de hackathon! Deze guide helpt je snel aan de slag te gaan.
 
 ## Stap 1: Kopieer de repository
 
-Download of kloon deze repository naar je lokale machine.
+Download of clone deze repository naar je lokale machine.
 
 ## Stap 2: Configureer je GreenPT API Key
 
